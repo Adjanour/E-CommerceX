@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerceX</title>
-    <!-- CSS Stylesheet -->
+    <!-- ====== CSS ====== -->
     <link rel="stylesheet" href="/css/cart.css">
-    <!-- FontAwesome Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- links -->
+    <script src="/js/all.js"></script>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="container">
-        <div id="product-list"></div>
+        <div id="root"></div>
         <div class="sidebar">
             <div class="head">
                 <p>My Cart</p>
@@ -33,7 +33,6 @@
             </div>
         </div>
     </div>
-
     <script>
         const products = [
             {
@@ -64,9 +63,14 @@
 
         let cart = [];
 
-        function addProductToCart(productId) {
+        function addtocart(productId) {
             const productToAdd = products[productId];
             cart.push(productToAdd);
+            updateCartUI();
+        }
+
+        function deleteFromCart(productId) {
+            cart.splice(productId, 1); 
             updateCartUI();
         }
 
@@ -80,33 +84,38 @@
 
         function updateCartUI() {
             const cartCount = document.getElementById('cart-count');
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-
             cartCount.textContent = cart.length;
 
+            const cartItems = document.getElementById('cart-items');
             if (cart.length === 0) {
                 cartItems.textContent = 'Your cart is empty';
             } else {
                 cartItems.innerHTML = '';
-                cart.forEach((item) => {
-                    cartItems.innerHTML += `<div>${item.title} - ¢${item.price}.00</div>`;
+                cart.forEach((item, index) => {
+                    cartItems.innerHTML += `
+                        <div>${item.title} - ¢${item.price}.00
+                            <button onclick="deleteFromCart(${index})">Remove</button>
+                        </div>`;
                 });
             }
 
+            const totalElement = document.getElementById('cart-total');
             const total = calculateTotal();
-            cartTotal.textContent = `¢ ${total}.00`;
+            totalElement.textContent = `¢ ${total}.00`;
         }
 
-        // Initialize the product list
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = products.map((product, index) => {
+
+        document.getElementById('root').innerHTML = products.map((item, i) => {
             return `
-                <div class="product">
-                    <img src="${product.image}" alt="${product.title}">
-                    <h2>${product.title}</h2>
-                    <p>Price: ¢${product.price}.00</p>
-                    <button onclick="addProductToCart(${index})">Add to cart</button>
+                <div class="box">
+                    <div class="img-box">
+                        <img class="images" src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="bottom">
+                        <p>${item.title}</p>
+                        <h2>¢ ${item.price}.00</h2>
+                        <button onclick="addtocart(${i})">Add to cart</button>
+                    </div>
                 </div>
             `;
         }).join('');
