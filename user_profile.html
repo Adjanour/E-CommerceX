@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light"  style="justify-content: flex-end; background-color: rgb(175, 255, 55);">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="logo.png" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto" >
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">Orders</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <div class="container">
+        <div class="">
+            <div class="container mt-5">
+                <h2>Accounts Management</h2>
+                <div class="row">
+                  <!-- User Profile Information -->
+                  <div class="col-md-6">
+                    <div class="card mb-4">
+                      <div class="card-header">User Profile</div>
+                      <div class="card-body">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="Username">User Name</label>
+                                <input type="text" class="form-control" id="Username" name="username" value="">
+                              </div>
+                          <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" id="fullName"  name="fullname" value="">
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" name="emailaddress" id="email" value="">
+                          </div>
+                          <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" class="form-control" name="phonenumber" id="phoneNumber" value="">
+                          </div>
+                          <button type="submit" name="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                        <div class="card mb-4">
+                        <div class="card-header">Password Management</div>
+                            <div class="card-body">
+                                <form action="" method="post">
+                                    <div class="form-group">
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" name="password" class="form-control" id="newPassword" title="Password must be at least 8 characters long and contain at least one letter and one number" required>
+                                        <small class="form-text text-muted">Password must be at least 8 characters long and contain at least one letter and one number.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword" required>
+                                    </div>
+                                    <!-- Security questions for account recovery -->
+                                    <div class="form-group">
+                                        <label for="securityQuestion">Security Question</label>
+                                        <select class="form-control" id="securityQuestion" name="securityQuestion">
+                                        <option value="1">What is your mother's maiden name?</option>
+                                        <option value="2">What is your favorite childhood pet's name?</option>
+                                        <option value="3">In which city were you born?</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="securityAnswer">Answer</label>
+                                        <input type="text" class="form-control" id="securityAnswer" name="securityAnswer" required>
+                                    </div>
+                                    <button type="submit" name="changePassword" class="btn btn-primary">Change Password</button>
+                                </form>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                                        
+                <!-- Notification Preferences -->
+                <div class="card">
+                        <div class="card-header">Notification Preferences</div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="emailNotifications" checked>
+                                        <label class="form-check-label" for="emailNotifications">Receive Email Notifications</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="smsNotifications">
+                                        <label class="form-check-label" for="smsNotifications">Receive SMS Notifications</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Preferences</button>
+                                </form>
+                            </div>
+                        </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+</body>
+</html>
