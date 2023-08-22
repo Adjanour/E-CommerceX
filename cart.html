@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerceX</title>
+    <!-- ====== CSS ====== -->
+    <link rel="stylesheet" href="/css/cart.css">
+    <!-- links -->
+    <script src="/js/all.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">LOGO</div>
+        <div class="cart">
+            <i class="fas fa-cart-shopping"></i>
+            <p id="cart-count">0</p>
+        </div>
+    </div>
+    <div class="container">
+        <div id="root"></div>
+        <div class="sidebar">
+            <div class="head">
+                <p>My Cart</p>
+            </div>
+            <div id="cart-items">Your cart is empty</div>
+            <div class="foot">
+                <h3>Total</h3>
+                <div id="cart-total">¢ 0.00</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const products = [
+            {
+                id: 0,
+                image: '/items/1.jpg',
+                title: 'No.1',
+                price: 150,
+            },
+            {
+                id: 1,
+                image: '/items/2.jpg',
+                title: 'No.2',
+                price: 10,
+            },
+            {
+                id: 2,
+                image: '/items/3.jpg',
+                title: 'No.3',
+                price: 100,
+            },
+            {
+                id: 3,
+                image: '/items/4.jpg',
+                title: 'No.4',
+                price: 250,
+            }
+        ];
+
+        let cart = [];
+
+        function addtocart(productId) {
+            const productToAdd = products[productId];
+            cart.push(productToAdd);
+            updateCartUI();
+        }
+
+        function deleteFromCart(productId) {
+            cart.splice(productId, 1); 
+            updateCartUI();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            cart.forEach((item) => {
+                total += item.price;
+            });
+            return total;
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            cartCount.textContent = cart.length;
+
+            const cartItems = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartItems.textContent = 'Your cart is empty';
+            } else {
+                cartItems.innerHTML = '';
+                cart.forEach((item, index) => {
+                    cartItems.innerHTML += `
+                        <div>${item.title} - ¢${item.price}.00
+                            <button onclick="deleteFromCart(${index})">Remove</button>
+                        </div>`;
+                });
+            }
+
+            const totalElement = document.getElementById('cart-total');
+            const total = calculateTotal();
+            totalElement.textContent = `¢ ${total}.00`;
+        }
+
+
+        document.getElementById('root').innerHTML = products.map((item, i) => {
+            return `
+                <div class="box">
+                    <div class="img-box">
+                        <img class="images" src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="bottom">
+                        <p>${item.title}</p>
+                        <h2>¢ ${item.price}.00</h2>
+                        <button onclick="addtocart(${i})">Add to cart</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    </script>
+</body>
+
+</html>

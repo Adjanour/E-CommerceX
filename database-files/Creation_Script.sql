@@ -8,7 +8,7 @@ CREATE TABLE Users (
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+); 
 
 -- Table: Products
 CREATE TABLE Products (
@@ -27,6 +27,14 @@ CREATE TABLE Carts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+
+INSERT INTO Carts (user_id) VALUES
+    (1),
+    (2),
+    (1),
+    (3),
+    (2);
+
 
 -- Table: CartItems
 CREATE TABLE CartItems (
